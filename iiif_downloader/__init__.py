@@ -96,7 +96,7 @@ class Image:
 
   def save(self):
     '''Save image to disk. NB: '''
-    out_path = os.path.join(self.out_dir, 'images', self.id)
+    out_path = os.path.join(self.out_dir, 'images', self.id.replace(':', '_'))
     if not out_path.endswith('.png'):
       out_path += '.png'
     if self.verbose: print(' * saving', out_path)
@@ -108,5 +108,5 @@ def save_json(path, obj, verbose=default_verbose):
     print(' * saving manifest to', path)
   if not path.endswith('.json'):
     path += '.json'
-  with open(path, 'w') as out:
+  with open(path.replace(':', '_').replace('|', '_'), 'w') as out:
     json.dump(obj, out)
